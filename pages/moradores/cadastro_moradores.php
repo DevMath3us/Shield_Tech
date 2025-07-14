@@ -24,7 +24,6 @@
         $sexo = mysqli_real_escape_string($conn, $_POST["sexo"]);
         $telefone = mysqli_real_escape_string($conn, $_POST["telefone"]);
         $email = mysqli_real_escape_string($conn, $_POST["email"]);
-        $email = mysqli_real_escape_string($conn, $_POST["email"]);
         $bloco = mysqli_real_escape_string($conn, $_POST["bloco"]);
         $torre = mysqli_real_escape_string($conn, $_POST["torre"]);
         $andar = mysqli_real_escape_string($conn, $_POST["andar"]);
@@ -41,8 +40,8 @@
             if (mysqli_num_rows($verificar_email) > 0) {
                 echo "<script>alert('Este email já está cadastrado!');</script>";
             } else {
-                $sql = "INSERT INTO tb_moradores (nome, cpf, rg, data_nascimento, sexo, telefone, email, bloco, torre, andar, veiculo, foto, data_cadastro) 
-                        VALUES ('$nome', '$cpf', '$rg', '$data_nascimento', '$sexo', '$telefone', '$email', '$bloco', '$torre', '$andar', '$veiculo', '$foto', '$data_cadastro')";
+                $sql = "INSERT INTO tb_moradores (nome, cpf, rg, data_nascimento, sexo, telefone, email, bloco, torre, andar, veiculo, animais, foto, data_cadastro) 
+                        VALUES ('$nome', '$cpf', '$rg', '$data_nascimento', '$sexo', '$telefone', '$email', '$bloco', '$torre', '$andar', '$veiculo', '', '$foto', '$data_cadastro')";
                 
                 if (mysqli_query($conn, $sql)) {
                     echo "<script>alert('Morador cadastrado com sucesso!'); window.location = 'consultar_moradores.php';</script>";
@@ -50,12 +49,6 @@
                     echo "<script>alert('Erro ao cadastrar morador: " . mysqli_error($conn) . "');</script>";
                 }
             }
-        }
-        
-        if (mysqli_query($conn, $sql)) {
-            echo "<script>alert('Morador cadastrado com sucesso!'); window.location = 'consultar_moradores.php';</script>";
-        } else {
-            echo "<script>alert('Erro ao cadastrar morador: " . mysqli_error($conn) . "');</script>";
         }
     }
     ?>

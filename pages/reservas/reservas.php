@@ -35,38 +35,14 @@
                 $morador = mysqli_fetch_array($morador_query);
                 
                 if ($morador && $morador['email']) {
-                    // Aqui você pode implementar o envio de email
-                    // Por exemplo, usando PHPMailer ou mail() do PHP
                     $nome_morador = $morador['nome'];
                     $email_morador = $morador['email'];
                     
-                    // Exemplo básico de email (você pode melhorar isso)
-                    $assunto = "Confirmação de Reserva - ShieldTech";
-                    $mensagem = "
-                    Olá $nome_morador,
-                    
-                    Sua reserva foi confirmada com sucesso!
-                    
-                    Detalhes da reserva:
-                    - Local: $local
-                    - Data: " . date('d/m/Y', strtotime($data)) . "
-                    - Horário: $horario
-                    - Duração: $tempo_duracao
-                    - Observações: $descricao
-                    
-                    Atenciosamente,
-                    Equipe ShieldTech
-                    ";
-                    
-                    $headers = "From: noreply@shieldtech.com\r\n";
-                    $headers .= "Reply-To: contato@shieldtech.com\r\n";
-                    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-                    
-                    // Enviar email (descomente a linha abaixo quando configurar o servidor de email)
-                    // mail($email_morador, $assunto, $mensagem, $headers);
+                    // Log da reserva para debug
+                    error_log("Reserva criada para: $nome_morador ($email_morador)");
                 }
                 
-                echo "<script>alert('Reserva realizada com sucesso! Confirmação enviada por email.');</script>";
+                echo "<script>alert('Reserva realizada com sucesso!');</script>";
             } else {
                 echo "<script>alert('Erro ao realizar reserva: " . mysqli_error($conn) . "');</script>";
             }
